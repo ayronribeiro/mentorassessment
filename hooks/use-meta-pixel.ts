@@ -21,9 +21,32 @@ export const useMetaPixel = () => {
     })
   }, [trackEvent])
 
+  const trackStartAssessment = useCallback(() => {
+    trackCustomEvent('StartAssessment', {
+      content_name: 'Mentor Quiz Assessment'
+    })
+  }, [trackCustomEvent])
+
+  const trackEndAssessment = useCallback((totalScore?: number) => {
+    trackCustomEvent('EndAssessment', {
+      content_name: 'Mentor Quiz Assessment',
+      total_score: totalScore
+    })
+  }, [trackCustomEvent])
+
+  const trackFormSubmitted = useCallback((email?: string) => {
+    trackCustomEvent('FormSubmitted', {
+      content_name: 'Mentor Quiz Info Page',
+      user_email: email
+    })
+  }, [trackCustomEvent])
+
   return {
     trackEvent,
     trackCustomEvent,
-    trackCompleteRegistration
+    trackCompleteRegistration,
+    trackStartAssessment,
+    trackEndAssessment,
+    trackFormSubmitted
   }
 }

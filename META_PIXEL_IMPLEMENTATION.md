@@ -31,7 +31,24 @@ O Meta Pixel foi implementado no site Mentor Assessment para rastrear conversõe
 - Disparado automaticamente em todas as páginas
 - Rastreia visualizações de página
 
-### 2. CompleteRegistration
+### 2. StartAssessment
+- Disparado quando a pessoa responde a primeira pergunta do quiz
+- Inclui parâmetros:
+  - `content_name: 'Mentor Quiz Assessment'`
+
+### 3. EndAssessment
+- Disparado quando o quiz é finalizado (última seção)
+- Inclui parâmetros:
+  - `content_name: 'Mentor Quiz Assessment'`
+  - `total_score`: pontuação total do quiz
+
+### 4. FormSubmitted
+- Disparado quando o formulário de contato é enviado
+- Inclui parâmetros:
+  - `content_name: 'Mentor Quiz Info Page'`
+  - `user_email`: email do usuário
+
+### 5. CompleteRegistration
 - Disparado quando o formulário é enviado com sucesso
 - Inclui parâmetros:
   - `content_name: 'Mentor Quiz Info Page'`
@@ -51,9 +68,25 @@ trackEvent('Purchase', { value: 100, currency: 'USD' })
 trackCustomEvent('CustomEvent', { parameter: 'value' })
 ```
 
-### Rastrear Registro Completo
+### Rastrear Eventos Específicos
 ```typescript
-const { trackCompleteRegistration } = useMetaPixel()
+const { 
+  trackStartAssessment, 
+  trackEndAssessment, 
+  trackFormSubmitted, 
+  trackCompleteRegistration 
+} = useMetaPixel()
+
+// Início do quiz
+trackStartAssessment()
+
+// Fim do quiz
+trackEndAssessment(150) // com pontuação total
+
+// Formulário enviado
+trackFormSubmitted('user@example.com')
+
+// Registro completo
 trackCompleteRegistration()
 ```
 
@@ -62,6 +95,9 @@ trackCompleteRegistration()
 1. Acesse o Facebook Events Manager
 2. Configure o Pixel ID: `2343040489443929`
 3. Configure eventos personalizados:
+   - `StartAssessment` - para rastrear início do quiz
+   - `EndAssessment` - para rastrear conclusão do quiz
+   - `FormSubmitted` - para rastrear envio do formulário
    - `CompleteRegistration` - para rastrear conversões
 
 ## Verificação

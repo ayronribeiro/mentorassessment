@@ -139,9 +139,14 @@ export default function MentorAssessment() {
     phone: string
   } | null>(null)
   const [isSubmittingToGHL, setIsSubmittingToGHL] = useState(false)
-  const { trackCompleteRegistration } = useMetaPixel()
+  const { trackCompleteRegistration, trackCustomEvent, trackStartAssessment, trackEndAssessment, trackFormSubmitted } = useMetaPixel()
 
   const updateScore = (sectionId: string, questionId: string, score: number) => {
+    // Track StartAssessment when first question is answered
+    if (sectionId === "core" && questionId === "core1") {
+      trackStartAssessment();
+    }
+
     setSections((prev) =>
       prev.map((section) =>
         section.id === sectionId
@@ -204,6 +209,8 @@ export default function MentorAssessment() {
     if (currentSection < sections.length - 1) {
       setCurrentSection(currentSection + 1)
     } else {
+      // Track EndAssessment when quiz is completed
+      trackEndAssessment(getTotalScore());
       setShowContactForm(true)
     }
   }
@@ -293,6 +300,7 @@ export default function MentorAssessment() {
       }
 
       // Track form submission with Meta Pixel
+      trackFormSubmitted(formData.email);
       trackCompleteRegistration()
 
       setShowContactForm(false)
@@ -301,6 +309,7 @@ export default function MentorAssessment() {
       console.error("Error processing quiz results:", error)
       
       // Track form submission with Meta Pixel even on error
+      trackFormSubmitted(formData.email);
       trackCompleteRegistration()
       
       setShowContactForm(false)
