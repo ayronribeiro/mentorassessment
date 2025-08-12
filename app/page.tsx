@@ -12,6 +12,7 @@ import { Header } from "@/components/header"
 import { AnimatedCard } from "@/components/animated-card"
 import { AnimatedProgress } from "@/components/animated-progress"
 import ContactForm from "@/components/contact-form"
+import { useMetaPixel } from "@/hooks/use-meta-pixel"
 
 interface Question {
   id: string
@@ -138,6 +139,7 @@ export default function MentorAssessment() {
     phone: string
   } | null>(null)
   const [isSubmittingToGHL, setIsSubmittingToGHL] = useState(false)
+  const { trackCompleteRegistration } = useMetaPixel()
 
   const updateScore = (sectionId: string, questionId: string, score: number) => {
     setSections((prev) =>
@@ -290,10 +292,17 @@ export default function MentorAssessment() {
         console.error("Failed to send data to GoHighLevel")
       }
 
+      // Track form submission with Meta Pixel
+      trackCompleteRegistration()
+
       setShowContactForm(false)
       setShowResults(true)
     } catch (error) {
       console.error("Error processing quiz results:", error)
+      
+      // Track form submission with Meta Pixel even on error
+      trackCompleteRegistration()
+      
       setShowContactForm(false)
       setShowResults(true)
     } finally {
