@@ -99,6 +99,15 @@
     animation: wiggle 1s ease-in-out infinite;
   }
 
+  /* Custom styles for mobile menu close button */
+  .sheet-close-button {
+    color: white !important;
+  }
+  
+  .sheet-close-button svg {
+    color: white !important;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
