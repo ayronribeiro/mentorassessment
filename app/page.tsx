@@ -579,7 +579,7 @@ export default function MentorAssessment() {
                 <div className="animate-bounce-in" style={{ animationDelay: "0.5s" }}>
                   <a href="https://mentoracademy.co/#join" target="_blank" rel="noopener noreferrer">
                     <Button
-                      className="bg-[#FF3A6E] hover:bg-[#ff1c59] text-white rounded-full px-12 py-6 text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-[#FF3A6E]/40 animate-pulse-cta"
+                      className="bg-[#FF3A6E] hover:bg-[#ff1c59] text-white rounded-full px-6 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-[#FF3A6E]/40 animate-pulse-cta"
                       size="lg"
                     >
                       🚀 Join Mentor Academy Now
