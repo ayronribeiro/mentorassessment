@@ -3,8 +3,11 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 
 export const metadata = {
-  title: 'v0 App',
+  title: 'Mentor Assessment',
   description: 'Created with v0',
+  icons: {
+    icon: '/mentor-academy-logo.png',
+  },
 }
 
 export default function RootLayout({

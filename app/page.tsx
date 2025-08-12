@@ -611,7 +611,7 @@ export default function MentorAssessment() {
                       className="text-[#4A7BF7] border-[#4A7BF7] hover:bg-[#4A7BF7]/10 rounded-full bg-transparent transition-all duration-300 hover:scale-105 px-8 py-3"
                       size="lg"
                     >
-                      📖 Get The Free Book
+                      📖 Get The Book
                     </Button>
                   </a>
                 </div>
