@@ -13,6 +13,7 @@ import { AnimatedCard } from "@/components/animated-card"
 import { AnimatedProgress } from "@/components/animated-progress"
 import ContactForm from "@/components/contact-form"
 import { useMetaPixel } from "@/hooks/use-meta-pixel"
+import { useGoogleAnalytics } from "@/hooks/use-google-analytics"
 
 interface Question {
   id: string
@@ -140,11 +141,18 @@ export default function MentorAssessment() {
   } | null>(null)
   const [isSubmittingToGHL, setIsSubmittingToGHL] = useState(false)
   const { trackCompleteRegistration, trackCustomEvent, trackStartAssessment, trackEndAssessment, trackFormSubmitted } = useMetaPixel()
+  const { 
+    trackStartAssessment: gaTrackStartAssessment, 
+    trackEndAssessment: gaTrackEndAssessment, 
+    trackFormSubmitted: gaTrackFormSubmitted, 
+    trackCompleteRegistration: gaTrackCompleteRegistration 
+  } = useGoogleAnalytics()
 
   const updateScore = (sectionId: string, questionId: string, score: number) => {
     // Track StartAssessment when first question is answered
     if (sectionId === "core" && questionId === "core1") {
       trackStartAssessment();
+      gaTrackStartAssessment();
     }
 
     setSections((prev) =>
@@ -211,6 +219,7 @@ export default function MentorAssessment() {
     } else {
       // Track EndAssessment when quiz is completed
       trackEndAssessment(getTotalScore());
+      gaTrackEndAssessment(getTotalScore());
       setShowContactForm(true)
     }
   }
@@ -299,18 +308,22 @@ export default function MentorAssessment() {
         console.error("Failed to send data to GoHighLevel")
       }
 
-      // Track form submission with Meta Pixel
+      // Track form submission with Meta Pixel and Google Analytics
       trackFormSubmitted(formData.email);
       trackCompleteRegistration()
+      gaTrackFormSubmitted(formData.email);
+      gaTrackCompleteRegistration();
 
       setShowContactForm(false)
       setShowResults(true)
     } catch (error) {
       console.error("Error processing quiz results:", error)
       
-      // Track form submission with Meta Pixel even on error
+      // Track form submission with Meta Pixel and Google Analytics even on error
       trackFormSubmitted(formData.email);
       trackCompleteRegistration()
+      gaTrackFormSubmitted(formData.email);
+      gaTrackCompleteRegistration();
       
       setShowContactForm(false)
       setShowResults(true)
