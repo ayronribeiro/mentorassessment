@@ -30,20 +30,8 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-
-            fbq('init', '1274615750766903'); // Your Pixel ID
-            fbq('track', 'PageView'); // Fires on every load
-
-            // Fires when someone lands on the information page
-            fbq('trackCustom', 'InfoPageView');
-
-            // If this is the page where they actually submit info, fire CompleteRegistration
-            // Call this AFTER form submission is confirmed
-            function trackInfoSubmitted(){
-              fbq('track', 'CompleteRegistration', {
-                content_name: 'Mentor Quiz Info Page'
-              });
-            }
+            fbq('init', '2343040489443929');
+            fbq('track', 'PageView');
           `}
         </Script>
         <noscript>
@@ -51,7 +39,7 @@ export default function RootLayout({
             height="1" 
             width="1" 
             style={{display: 'none'}}
-            src="https://www.facebook.com/tr?id=1274615750766903&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=2343040489443929&ev=PageView&noscript=1"
           />
         </noscript>
         {/* End Meta Pixel Code */}

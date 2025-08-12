@@ -8,9 +8,8 @@ O Meta Pixel foi implementado no site Mentor Assessment para rastrear conversõe
 ### 1. `app/layout.tsx`
 - Adicionado o script do Meta Pixel no `<head>`
 - Inclui o código base do Facebook Pixel
-- Configurado com o Pixel ID: `1274615750766903`
-- Implementa o evento `InfoPageView` quando a página carrega
-- Define a função `trackInfoSubmitted()` para rastrear envios de formulário
+- Configurado com o Pixel ID: `2343040489443929`
+- Implementa o evento `PageView` quando a página carrega
 
 ### 2. `app/page.tsx`
 - Importado o hook `useMetaPixel`
@@ -32,11 +31,7 @@ O Meta Pixel foi implementado no site Mentor Assessment para rastrear conversõe
 - Disparado automaticamente em todas as páginas
 - Rastreia visualizações de página
 
-### 2. InfoPageView (Custom Event)
-- Disparado quando alguém acessa a página de informações
-- Rastreia visitantes na página do formulário
-
-### 3. CompleteRegistration
+### 2. CompleteRegistration
 - Disparado quando o formulário é enviado com sucesso
 - Inclui parâmetros:
   - `content_name: 'Mentor Quiz Info Page'`
@@ -65,9 +60,8 @@ trackCompleteRegistration()
 ## Configuração do Facebook Ads
 
 1. Acesse o Facebook Events Manager
-2. Configure o Pixel ID: `1274615750766903`
+2. Configure o Pixel ID: `2343040489443929`
 3. Configure eventos personalizados:
-   - `InfoPageView` - para rastrear visitantes na página
    - `CompleteRegistration` - para rastrear conversões
 
 ## Verificação
