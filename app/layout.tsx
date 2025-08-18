@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
+        <meta name="facebook-domain-verification" content="86qfvpbsoo9ekn9acxkx62fg9rczv3" />
         {/* Meta Pixel Code */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
